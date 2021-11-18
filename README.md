@@ -19,7 +19,7 @@ used for legacy redirections, friendly URLs, and anything else that involves red
 another.
 
 The URLs may include query-strings, and can be imported from a CSV using the "Redirects" model
-admin included. RHM
+admin included.
 
 The redirection is implemented as a plug-in to the 404 handler, which means that you can't create a
 redirection for a page that already exists on the site.

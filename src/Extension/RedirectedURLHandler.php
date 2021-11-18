@@ -134,6 +134,14 @@ class RedirectedURLHandler extends Extension
         if ($matched) {
             $response = new HTTPResponse();
             $dest = $matched->Link();
+            // RHM addition, re-append query params to destination
+            if(isset($getVars) && !empty($getVars)) {
+                $qarr = array();
+                foreach($getVars as $gvk=>$gvv) {
+                    $qarr[] = $gvk . '=' . $gvv;
+                }
+                $dest .= '?' . implode('&', $qarr);
+            }
             $response->redirect(Director::absoluteURL($dest), $this->getRedirectCode($matched));
 
             throw new HTTPResponse_Exception($response);
