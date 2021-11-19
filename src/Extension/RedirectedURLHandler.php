@@ -136,11 +136,7 @@ class RedirectedURLHandler extends Extension
             $dest = $matched->Link();
             // RHM addition, re-append query params to destination
             if(isset($getVars) && !empty($getVars)) {
-                $qarr = array();
-                foreach($getVars as $gvk=>$gvv) {
-                    $qarr[] = $gvk . '=' . $gvv;
-                }
-                $dest .= '?' . implode('&', $qarr);
+                $dest .= '?' . http_build_query($getVars);
             }
             $response->redirect(Director::absoluteURL($dest), $this->getRedirectCode($matched));
 
